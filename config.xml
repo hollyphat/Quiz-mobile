@@ -64,7 +64,7 @@
     <!--<plugin name="cordova-plugin-camera" spec="^3.0.0"  />-->
     <!--<plugin name="cordova-plugin-file" />-->
     <!--<plugin name="cordova-plugin-file-transfer" />-->
-
+    <gap:plugin name="cordova-plugin-file" source="npm" version="3.0.0"/>
     <plugin name="cordova-plugin-file-transfer" spec="^1.7.0" />
 
     <allow-intent href="http://*/*" />
