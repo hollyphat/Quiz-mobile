@@ -69,8 +69,8 @@
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     <plugin name="cordova-plugin-whitelist" spec="1.3.2" />
 
-    <plugin name="cordova-plugin-camera" spec="^3.0.0"  />
-    <plugin name="cordova-plugin-file" />
+    <!--<plugin name="cordova-plugin-camera" spec="^3.0.0"  />-->
+    <!--<plugin name="cordova-plugin-file" />-->
     <plugin name="cordova-plugin-file-transfer" />
 
     <allow-intent href="http://*/*" />
