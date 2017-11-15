@@ -71,7 +71,9 @@
 
     <!--<plugin name="cordova-plugin-camera" spec="^3.0.0"  />-->
     <!--<plugin name="cordova-plugin-file" />-->
-    <plugin name="cordova-plugin-file-transfer" />
+    <!--<plugin name="cordova-plugin-file-transfer" />-->
+
+    <plugin name="phonegap-plugin-file-transfer" spec="1" />
 
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />    
