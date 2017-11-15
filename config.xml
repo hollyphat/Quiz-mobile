@@ -20,10 +20,10 @@
     <content src="index.html" />
 
     <!-- Customize your app and platform with the preference element. -->
-    <preference name="DisallowOverscroll"         value="true" />
-    <!-- android: MIN SDK version supported on the target device. MAX version is blank by default. -->
-    <preference name="android-minSdkVersion"      value="14" />
-    
+    <!--<preference name="DisallowOverscroll"         value="true" />-->
+    <!--&lt;!&ndash; android: MIN SDK version supported on the target device. MAX version is blank by default. &ndash;&gt;-->
+    <!--<preference name="android-minSdkVersion"      value="14" />-->
+    <!---->
     
 
     
@@ -42,15 +42,7 @@
     
     
 
-    <!--
-        Define access to external domains.
 
-        <access />            - a blank access tag denies access to all external resources.
-        <access origin="*" /> - a wildcard access tag allows access to all external resource.
-
-        Otherwise, you can specify specific domains:
-    -->
-    
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
