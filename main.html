@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+      <meta name="mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-status-bar-style" content="black">
+      <meta name="theme-color" content="#2196f3">
+    <title>Mobile Quiz</title>
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="css/framework7.material.min.css">
+    <link rel="stylesheet" href="css/framework7.material.colors.min.css">
+      <link rel="stylesheet" href="css/material-icon.css"/>
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="css/my-app.css">
+  </head>
+  <body class="theme-lightblue">
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-cover">
+
+    </div>
+
+    <!-- Views-->
+    <div class="views">
+      <!-- Your main view, should have "view-main" class-->
+      <div class="view view-main">
+        <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-fixed">
+          <!-- Page, data-page contains page name-->
+
+            <div class="page" data-page="main-page">
+
+
+                  <!--splash sceen-->
+                  <div class="page-content splash-screen center" style="color: deepskyblue;" id="splash-page">
+                        <h3 style="margin-bottom:10px;">The Federal Polyechnic Ede</h3>
+                        <h4 style="margin-bottom:30px;">Compute Engineering Department</h4>
+
+
+
+                      <h1 style="font-weight: bold; margin-top: 75px; margin-bottom:75px;">Mobile Quiz</h1>
+
+                      <p>
+                          Supervised By:
+                      </p>
+
+                      <h3>
+                         Mr. Rahmon T.A
+                      </h3>
+                  </div>
+                  <!--splash scree-->
+
+                <!--login screen-->
+
+                <div class="page-content login-screen-content hide" id="main-page">
+                    <div class="login-screen-title" style="padding: 10px;">Mobile Quiz</div>
+
+                    <div class="content-block">
+                        <p style="text-align:center; font-weight:bold;">Account Login</p>
+                    </div>
+                    <form action="" method="post" role="form" id="login-form">
+                        <div class="list-block inputs-list">
+                            <ul>
+                                <li class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title label">Matric No</div>
+                                        <div class="item-input">
+                                            <input type="text" autocomplete="off" required="" name="login_matric" id="login_matric" placeholder="Matric No"/>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title label">Password</div>
+                                        <div class="item-input">
+                                            <input type="password" required="" name="login_password" id="login_password" placeholder="Password"/>
+                                        </div>
+                                    </div>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                        <div class="content-block">
+                            <input type="submit" name="login_ok" class="button button-fill button-raised" value="Login">
+                        </div>
+
+                        <div class="content-block">
+                            <a href="register.html" class="button">Create Account</a>
+
+                            <a href="password.html" class="button">Forgot Password</a>
+                        </div>
+
+                        <a href="home.html" class="hide" id="home">Home</a>
+                        <div class="content-block">
+                            <div class="list-block-label"><b>Supervised By:</b><br>Mr. Rahmon T.A</div>
+                        </div>
+                    </form>
+                </div>
+
+                <!--login screen-->
+
+            </div>
+
+
+
+        </div>
+        <!-- Bottom Toolbar-->
+
+      </div>
+    </div>
+    <!--jquery-->
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="cordova_plugins.js"></script>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/settings.js"></script>
+    <script type="text/javascript" src="js/my-app.js"></script>
+
+
+
+  </body>
+</html>
