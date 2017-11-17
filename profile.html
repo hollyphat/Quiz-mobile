@@ -1,0 +1,126 @@
+<div data-page="profile" class="page">
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="navbar navbar-fixed">
+        <div class="navbar-inner">
+            <div class="left">
+                &nbsp;<a href="#" class="back link back-link">
+                    <i class="icon icon-back"></i><span></span>
+                </a>
+            </div>
+            <div class="center">Update Profile</div>
+            <!--<div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>-->
+        </div>
+    </div>
+    <div class="page-content">
+        <div class="list-block">
+            <div class="card">
+                <div class="card-header">Update Profile</div>
+                <div class="card-content">
+                    <div class="card-content-inner">
+                        <form action="" method="post" role="form" id="update-form">
+                            <div class="list-block inputs-list">
+                                <ul>
+
+                                    <li class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title label">Matric No</div>
+                                        <div class="item-input">
+                                            <input type="text" disabled required="" name="reg_matric" id="profile_matric" placeholder="Matric No"/>
+                                        </div>
+                                    </div>
+                                </li>
+                                    <li class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">Full Name</div>
+                                            <div class="item-input">
+                                                <input type="text" autocomplete="off" required="" name="reg_name" id="profile_name" placeholder="Full Name"/>
+                                            </div>
+                                        </div>
+                                    </li>
+
+
+                                    <li>
+                                        <!-- Additional "smart-select" class -->
+                                        <a href="#" class="item-link smart-select">
+                                            <!-- select -->
+                                            <select name="reg_gender" id="profile_gender" class="smart_1">
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                            </select>
+                                            <div class="item-content">
+                                                <div class="item-inner">
+                                                    <!-- Select label -->
+                                                    <div class="item-title">Gender</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+
+                                    <li class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">Email Address</div>
+                                            <div class="item-input">
+                                                <input type="email" autocomplete="off" required="" name="email" id="profile_email" placeholder="Email Address"/>
+                                            </div>
+                                        </div>
+                                    </li>
+
+
+                                </ul>
+                            </div>
+                            <div class="content-block">
+                                <input type="submit" name="update_ok" class="button button-fill button-raised" value="Update">
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    &nbsp;
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div class="card-header">Update Password</div>
+                <div class="card-content">
+                    <div class="card-content-inner">
+                        <form action="" method="post" role="form" id="password-form">
+                            <div class="list-block inputs-list">
+                                <ul>
+
+                                    <li class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">Password</div>
+                                            <div class="item-input">
+                                                <input type="password" required="" name="reg_password" id="password" placeholder="Password"/>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">Confirm Password</div>
+                                            <div class="item-input">
+                                                <input type="password" required="" name="reg_password_2" id="confirm_password" placeholder="Confirm Password"/>
+                                            </div>
+                                        </div>
+                                    </li>
+
+
+                                </ul>
+                            </div>
+                            <div class="content-block">
+                                <input type="submit" name="update_pass" class="button button-fill button-raised" value="Update">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-footer">&nbsp;</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
