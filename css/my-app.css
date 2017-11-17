@@ -8,8 +8,13 @@
     src: url('../fonts/Montserrat-Regular.ttf') format("opentype");
 }
 
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../fonts/Ubuntu.ttf') format("opentype");
+}
+
 html,body{
-    font-family: 'Montserrat';
+    font-family: 'Ubuntu';
 }
 
 input::-webkit-outer-spin-button,
@@ -39,4 +44,27 @@ input::-webkit-inner-spin-button {
 .card *{
     word-wrap: break-word !important;
     white-space: normal;
+}
+
+.img-icon{
+    background-color: #03a9f4;
+    color: #fff;
+    height: 32px;
+    width: 32px;
+    line-height: 32px;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+    font-size: 1.6em;
+    border-radius: 16px;
+    text-transform: uppercase;
+}
+
+.logo-img{
+    background-color: #03a9f4;
+    padding: 4px;
+    border-radius: 2px;
+    max-width: 160px;
+    margin: 10px auto;
+    text-align: center;
 }
