@@ -377,13 +377,16 @@ myApp.onPageInit('passport',function () {
         $("#passport").attr("src",src);
     }
 
-    $("body").on('click', '#but_take', function(event) {
+    $$("#but_take").on('click', function(event) {
+        event.preventDefault();
+        myApp.alert("You clicked me!");
         navigator.camera.getPicture(onSuccess, onFail, { quality: 20,
             destinationType: Camera.DestinationType.FILE_URL
         });
     });
 
-    $("body").on('click', '#but_select', function () {
+    $$("#but_select").on('click', function () {
+        event.preventDefault();
         navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
             sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
             allowEdit: true,
