@@ -9,8 +9,8 @@ var myApp = new Framework7({
 
 //login vars
 
-var user_id = localStorage.getItem("user_id");
-var username = localStorage.getItem("username");
+var user_id = sessionStorage.getItem("user_id");
+var username = sessionStorage.getItem("username");
 var full_name = sessionStorage.getItem("full_name");
 
 
@@ -28,64 +28,18 @@ var mainView = myApp.addView('.view-main', {
 // Callbacks to run specific code for specific pages, for example for About page:
 myApp.onPageInit('login-screen-embedded', function (page) {
 
-    var image_name = "";
-
-    // take picture from camera
-    $$('#but_take').click(function(){
-        navigator.camera.getPicture(onSuccess, onFail, { quality: 20,
-            destinationType: Camera.DestinationType.FILE_URL
-        });
-    });
-
-    // upload select
-    $$("#but_select").click(function(){
-        navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
-            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-            allowEdit: true,
-            destinationType: Camera.DestinationType.FILE_URI
-        });
-    });
-
-    // Change image source and upload photo to server
-    function onSuccess(imageURI) {
-        // Set image source
-        var image = document.getElementById('img');
-        image.src = imageURI  + '?' + Math.random();
-
-        var options = new FileUploadOptions();
-        options.fileKey = "file";
-        options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-        options.mimeType = "image/jpeg";
-
-        var params = {};
-        params.value1 = "test";
-        params.value2 = "param";
-
-        options.params = params;
-        options.chunkedMode = false;
-
-        var ft = new FileTransfer();
-        ft.upload(imageURI, "http://app.onlinemedia.com.ng/quiz_mobile/upload.php", function(result){
-            image_source =  result.response;
-        }, function(error){
-            myApp.alert('error : ' + JSON.stringify(error));
-        }, options);
-    }
-    function onFail(message) {
-        alert('Failed because: ' + message);
-    }
-
     $$("#register-form").on('submit',function(e){
         e.preventDefault();
-        if(image_name == ""){
-            myApp.alert("You did not upload a picture");
-            return;
-        }
+
         var matric = $$("#reg_matric").val();
         var password = $$("#reg_password").val();
         var f_name = $$("#reg_name").val();
         var email = $$("#reg_email").val();
-        var gender = $$("#reg_phone").val();
+        var gender = "";
+
+        $$('select[name="reg_gender"] option:checked').each(function () {
+            gender = this.value;
+        });
         myApp.showPreloader("Signing up...");
 
         $$.ajax({
@@ -96,8 +50,7 @@ myApp.onPageInit('login-screen-embedded', function (page) {
                 'matric' : matric,
                 'password' : password,
                 'gender': gender,
-                'email': email,
-                'image' : image_name
+                'email': email
             },
             type: 'POST',
             dataType: 'json',
@@ -106,11 +59,11 @@ myApp.onPageInit('login-screen-embedded', function (page) {
             success:function(f){
                 var ok = f.ok;
                 if(ok == 1){
-                    $$("#username").val('');
-                    $$("#name").val('');
-                    $$("#password").val('');
-                    $$("#email").val('');
-                    $$("#phone").val('');
+                    $$("#reg_matric").val('');
+                    $$("#reg_name").val('');
+                    $$("#reg_password").val('');
+                    $$("#reg_email").val('');
+                    //$$("#phone").val('');
                 }
                 myApp.hidePreloader();
 
@@ -119,6 +72,7 @@ myApp.onPageInit('login-screen-embedded', function (page) {
                 });
             },
             error:function(err){
+                console.log(err.responseText);
                 myApp.hidePreloader();
                 myApp.alert("Network error, try again");
             },
@@ -208,13 +162,13 @@ myApp.onPageInit('main-page', function (page) {
         e.preventDefault();
         var usern = $$("#login_matric").val();
         var password = $$("#login_password").val();
-        myApp.showPreloader("Login Processing,<br/>Please Wait...");
+        myApp.showPreloader("Processing,<br/>Please Wait...");
 
         $$.ajax({
             url: url,
             data: {
                 'login': '',
-                'username' : usern,
+                'matric' : usern,
                 'password' : password
             },
             type: 'POST',
@@ -224,14 +178,17 @@ myApp.onPageInit('main-page', function (page) {
             success:function(f){
                 var ok = f.ok;
                 if(ok == 1){
-                    $$("#username_login").val('');
-                    $$("#password_login").val('');
+                    $$("#login_matric").val('');
+                    $$("#login_password").val('');
 
 
                     var info = f.record;
-                    sessionStorage.setItem("username",info['username']);
-                    localStorage.setItem("user_id",info['user_id']);
+                    sessionStorage.setItem("matric",info['matric']);
+                    sessionStorage.setItem("user_id",info['user_id']);
                     sessionStorage.setItem("full_name",info['name']);
+                    sessionStorage.setItem("email",info['email']);
+                    sessionStorage.setItem("gender",info['gender']);
+                    sessionStorage.setItem("passport",info['passport']);
                     myApp.hidePreloader();
                     $$("#home").click();
                 }else {
@@ -255,9 +212,9 @@ myApp.onPageInit('main-page', function (page) {
 }).trigger();
 
 
-myApp.onPageInit('homed', function (page) {
-    var username2 = localStorage.getItem("username");
-    if(username2 == "" || username2 == null){
+myApp.onPageInit('home', function (page) {
+    var matric2 = sessionStorage.getItem("matric");
+    if(matric2 == "" || matric2 == null){
         window.location = "main.html";
     }
 
@@ -273,53 +230,227 @@ myApp.onPageInit('homed', function (page) {
     });
 
     //console.log(inbox_l);
+}).trigger();
+
+myApp.onPageAfterAnimation('profile', function (page){
+    //Page 3 arrives, we may remove Page 2 from dom and it will
+    //be reloaded when you click on back link
+    //$$('.page-on-left').remove();
+})
+myApp.onPageInit('profile',function (page) {
+    var home_matric = sessionStorage.getItem("matric");
+    var home_email = sessionStorage.getItem("email");
+    var home_gender = sessionStorage.getItem("gender");
+    var home_name = sessionStorage.getItem("full_name");
+
+    var matric2 = sessionStorage.getItem("matric");
+    if(matric2 == "" || matric2 == null){
+        window.location = "main.html";
+    }
+
+    $("#profile_name").val(home_name);
+    $("#profile_matric").val(home_matric);
+    $("#profile_email").val(home_email);
+    $("#profile_gender").val(home_gender);
+
+    $$("#update-form").on('submit',function (e) {
+        e.preventDefault();
+
+        var profile_name = $$("#profile_name").val();
+        var profile_email = $$("#profile_email").val();
+
+        var gender = "";
+
+        $$('select[name="reg_gender"] option:checked').each(function () {
+            gender = this.value;
+        });
+        myApp.showPreloader("Updating profile,<br/>Please Wait...");
+
+        $$.ajax({
+            url: url,
+            data: {
+                'update_profile': '',
+                'name' : profile_name,
+                'email' : profile_email,
+                'gender' : gender,
+                'user_id' : sessionStorage.getItem("user_id")
+            },
+            type: 'POST',
+            dataType: 'json',
+            crossDomain : true,
+            cache: false,
+            success:function(f){
+                var ok = f.ok;
+                if(ok == 1){
+
+                    sessionStorage.setItem("full_name",profile_name);
+                    sessionStorage.setItem("email",profile_email);
+                    sessionStorage.setItem("gender",gender);
+                    update_stat();
+                    myApp.hidePreloader();
+                    myApp.addNotification({
+                        message: f.msg
+                    });
+                }else {
+                    myApp.hidePreloader();
+
+
+
+                    myApp.addNotification({
+                        message: 'Unable to update profile'
+                    });
+
+
+                }
+            },
+            error:function(err){
+                console.log(err.responseText);
+                myApp.hidePreloader();
+                myApp.alert("Network error, try again");
+            },
+            timeout: 60000
+        });
+    });
+
+
+
+    $$("#password-form").on('submit',function (e) {
+        e.preventDefault();
+
+        var pass = $$("#password").val();
+        var c_pass = $$("#confirm_password").val();
+
+        if(pass !== c_pass){
+            myApp.alert("Password does not match");
+            return false;
+        }
+        myApp.showPreloader("Updating password,<br/>Please Wait...");
+
+        $$.ajax({
+            url: url,
+            data: {
+                'update_password': '',
+                'password' : pass,
+                'user_id' : sessionStorage.getItem("user_id")
+            },
+            type: 'POST',
+            dataType: 'json',
+            crossDomain : true,
+            cache: false,
+            success:function(f){
+                var ok = f.ok;
+                if(ok == 1){
+                    myApp.hidePreloader();
+                    myApp.addNotification({
+                        message: f.msg
+                    });
+                    $("#password").val('');
+                    $("#confirm_password").val('');
+                }else {
+                    myApp.hidePreloader();
+
+                    myApp.addNotification({
+                        message: 'Unable to update password'
+                    });
+
+
+                }
+            },
+            error:function(err){
+                console.log(err.responseText);
+                myApp.hidePreloader();
+                myApp.alert("Network error, try again");
+            },
+            timeout: 60000
+        });
+    })
+});
+
+myApp.onPageInit('passport',function () {
+    var my_img = sessionStorage.getItem("passport");
+
+    if(my_img == "" || my_img == null){
+        $("#passport").attr("src","avatar.png");
+    }else{
+        var src = base_url+"/upload/"+my_img;
+        $("#passport").attr("src",src);
+    }
+
+    $("body").on('click', '#but_take', function(event) {
+        navigator.camera.getPicture(onSuccess, onFail, { quality: 20,
+            destinationType: Camera.DestinationType.FILE_URL
+        });
+    });
+
+    $("body").on('click', '#but_select', function () {
+        navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+            allowEdit: true,
+            destinationType: Camera.DestinationType.FILE_URI
+        });
+    });
+
+
+    // Change image source and upload photo to server
+    function onSuccess(imageURI) {
+
+        // Set image source
+        var image = document.getElementById('img');
+        image.src = imageURI  + '?' + Math.random();
+
+        var options = new FileUploadOptions();
+        options.fileKey = "file";
+        options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+        options.mimeType = "image/jpeg";
+
+        var params = {};
+        params.value1 = "test";
+        params.value2 = "param";
+
+        options.params = params;
+        options.chunkedMode = false;
+        var user_id_id = sessionStorage.getItem("user_id");
+        var ft = new FileTransfer();
+        ft.upload(imageURI, base_url+"upload.php?user="+user_id_id, function(result){
+            myApp.alert('successfully uploaded ' + result.response);
+        }, function(error){
+            myApp,alert('error : ' + JSON.stringify(error));
+        }, options);
+
+    }
+
+    function onFail(message) {
+        alert('Failed because: ' + message);
+    }
 });
 
 
 
-
 function update_stat(){
-
-    var u_id = localStorage.getItem("user_id");
+    //myApp.alert("I work");
+    var u_id = sessionStorage.getItem("user_id");
 
     var f_name = sessionStorage.getItem("full_name");
 
 
     $$("#full-name, .full-name").html(f_name);
 
-    $$.ajax({
-        url: url,
-        data:{
-            'msg_list': '',
-            'user': u_id
-        },
-        type: 'GET',
-        crossDomain : true,
-        cache: false,
-        dataType: 'json',
-        success:function(f){
-            var stats = f.stats;
-            sessionStorage.setItem("inbox",stats['inbox']);
-            sessionStorage.setItem("sent",stats['sent']);
-            sessionStorage.setItem("read",stats['read']);
 
-            inbox_l = sessionStorage.getItem("inbox");
-            sent_l = sessionStorage.getItem("sent");
-            read_l = sessionStorage.getItem("read");
-            //f_name = sessionStorage.getItem("full_name");
+    var my_img = sessionStorage.getItem("passport");
 
-            $$("#inbox-count, .inbox-count").html(inbox_l);
-            $$("#read-count, .read-count").html(read_l);
-            $$("#sent-count, .sent-count").html(sent_l);
-            //$$("#full-name, .full-name").html(f_name);
-        },
-        error:function(err){
-            myApp.addNotification({
-                message: 'Unable to retrieve message count'
-            });
-        },
-        timeout: 60000
+    if(my_img == "" || my_img == null){
+        $("#user-img").attr("src","avatar.png");
+    }else{
+        var src = base_url+"/upload/"+my_img;
+        $("#user-img").attr("src",src);
+    }
 
-    });
+    var home_matric = sessionStorage.getItem("matric");
+    var home_email = sessionStorage.getItem("email");
+    var home_gender = sessionStorage.getItem("gender");
+
+    $(".home-matric").html(home_matric);
+    $(".home-email").html(home_email);
+    $(".home-gender").html(home_gender);
 
 }
