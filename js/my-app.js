@@ -81,7 +81,6 @@ myApp.onPageInit('login-screen-embedded', function (page) {
     });
 });
 
-
 myApp.onPageInit('password', function (page) {
     $$("#password-form").on('submit',function(e){
         e.preventDefault();
@@ -129,7 +128,7 @@ myApp.onPageInit('main-page', function (page) {
 
     var ft = sessionStorage.getItem("ft");
     //console.log(ft);
-    if((ft == null) || (ft == "")){
+    /*if((ft == null) || (ft == "")){
         //show splash
         sessionStorage.setItem("ft",1);
         document.getElementById('splash-page').style.display = "block";
@@ -141,7 +140,9 @@ myApp.onPageInit('main-page', function (page) {
     }else{
         //show main
         show_main();
-    }
+    }*/
+
+    show_main();
 
 
     function show_main()
