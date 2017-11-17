@@ -128,7 +128,7 @@ myApp.onPageInit('main-page', function (page) {
 
     var ft = sessionStorage.getItem("ft");
     //console.log(ft);
-    /*if((ft == null) || (ft == "")){
+    if((ft == null) || (ft == "")){
         //show splash
         sessionStorage.setItem("ft",1);
         document.getElementById('splash-page').style.display = "block";
@@ -140,9 +140,9 @@ myApp.onPageInit('main-page', function (page) {
     }else{
         //show main
         show_main();
-    }*/
+    }
 
-    show_main();
+    //show_main();
 
 
     function show_main()
@@ -231,7 +231,7 @@ myApp.onPageInit('home', function (page) {
     });
 
     //console.log(inbox_l);
-}).trigger();
+});
 
 myApp.onPageAfterAnimation('profile', function (page){
     //Page 3 arrives, we may remove Page 2 from dom and it will
