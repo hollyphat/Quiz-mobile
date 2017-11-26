@@ -371,62 +371,31 @@ myApp.onPageInit('profile',function (page) {
 myApp.onPageInit('passport',function () {
     var my_img = sessionStorage.getItem("passport");
 
-    if(my_img == "" || my_img == null){
+    if(my_img == "" || my_img == null || my_img == "null"){
         $("#passport").attr("src","avatar.png");
     }else{
         var src = base_url+"/upload/"+my_img;
         $("#passport").attr("src",src);
     }
 
-    $$("#but_take").on('click', function(event) {
-        event.preventDefault();
-        myApp.alert("You clicked me!");
-        navigator.camera.getPicture(onSuccess, onFail, { quality: 20,
-            destinationType: Camera.DestinationType.FILE_URL
-        });
+    $('#upload-form').JSAjaxFileUploader({
+        uploadUrl:'upload.php',
+        formData:{
+            user_id: sessionStorage.getItem("user_id")
+        },
+        inputText: "Select Image",
+        autoSubmit:false,	//to disable auto submit
+        uploadTest:'Upload Passport',
+        maxFileSize:512000,	//Max 500 KB file
+        allowExt: 'gif|jpg|jpeg|png',	//allowing only images for upload,
+        success:function(f){
+            var img_src = base_url+"/upload/"+f;
+            sessionStorage.setItem("passport",f);
+            $("#passport").attr("src",img_src);
+            console.log(f);
+        }
     });
 
-    $$("#but_select").on('click', function () {
-        event.preventDefault();
-        navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
-            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-            allowEdit: true,
-            destinationType: Camera.DestinationType.FILE_URI
-        });
-    });
-
-
-    // Change image source and upload photo to server
-    function onSuccess(imageURI) {
-
-        // Set image source
-        var image = document.getElementById('img');
-        image.src = imageURI  + '?' + Math.random();
-
-        var options = new FileUploadOptions();
-        options.fileKey = "file";
-        options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
-        options.mimeType = "image/jpeg";
-
-        var params = {};
-        params.value1 = "test";
-        params.value2 = "param";
-
-        options.params = params;
-        options.chunkedMode = false;
-        var user_id_id = sessionStorage.getItem("user_id");
-        var ft = new FileTransfer();
-        ft.upload(imageURI, base_url+"upload.php?user="+user_id_id, function(result){
-            myApp.alert('successfully uploaded ' + result.response);
-        }, function(error){
-            myApp,alert('error : ' + JSON.stringify(error));
-        }, options);
-
-    }
-
-    function onFail(message) {
-        alert('Failed because: ' + message);
-    }
 });
 
 myApp.onPageInit('category',function () {
