@@ -386,7 +386,7 @@ myApp.onPageInit('passport',function () {
         inputText: "Select Image",
         autoSubmit:false,	//to disable auto submit
         uploadTest:'Upload Passport',
-        maxFileSize:512000,	//Max 500 KB file
+        maxFileSize:1024000,	//Max 500 KB file
         allowExt: 'gif|jpg|jpeg|png',	//allowing only images for upload,
         success:function(f){
             var img_src = base_url+"/upload/"+f;
