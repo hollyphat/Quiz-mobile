@@ -379,7 +379,7 @@ myApp.onPageInit('passport',function () {
     }
 
     $('#upload-form').JSAjaxFileUploader({
-        uploadUrl:'upload.php',
+        uploadUrl: base_url+'upload.php',
         formData:{
             user_id: sessionStorage.getItem("user_id")
         },
@@ -392,7 +392,7 @@ myApp.onPageInit('passport',function () {
             var img_src = base_url+"/upload/"+f;
             sessionStorage.setItem("passport",f);
             $("#passport").attr("src",img_src);
-            console.log(f);
+            myApp.addNotification("Passport uploaded successfully");
         }
     });
 
