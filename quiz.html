@@ -1,0 +1,98 @@
+<div data-page="quiz" class="page">
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="navbar navbar-fixed">
+        <div class="navbar-inner">
+            <div class="left">
+                &nbsp;<a href="#" class="back link back-link">
+                    <i class="icon icon-back"></i><span></span>
+                </a>
+            </div>
+            <div class="center"><span id="quiz_name"></span> Quiz</div>
+            <!--<div class="right"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>-->
+        </div>
+    </div>
+    <div class="page-content">
+
+        <div class="time-section hide">
+            <h3>&nbsp;</h3>
+            <div class="card">
+                <div class="card-header">Time Remaining</div>
+                <div class="card-content">
+                    <div class="card-content-inner">
+                        <span id="time_rem_hour">00</span> <span> : </span>
+                        <span id="time_rem_minute">00</span> <span> : </span>
+                        <span id="time_rem_seconds">00</span>
+                    </div>
+                </div>
+                <div class="card-footer">&nbsp;</div>
+            </div>
+        </div>
+
+
+        <div class="quiz-page">
+            <div class="content-block">
+                <form action="" id="quiz-form">
+                    <div id="the-quiz"></div>
+
+                    <div class="content-block-inner submit-btn">
+                        <div class="sub-btn">
+                            <input type="hidden" name="user_id" id="the_user_id">
+                            <input type="hidden" name="cat_id" id="the_cat_id">
+                            <input type="hidden" name="end_quiz" value="yes">
+                            <input type="submit" name="end-quiz" class="button button-raised button-fill sub-test" value="Submit">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="result-form hide">
+            <div class="content-block">
+                <div class="content-block-title center">Quiz Summary</div>
+                <div class="content-block-inner">
+                    <p>
+                        Total Number of Questions : <strong class="right"><span id="total_q"></span></strong>
+                    </p>
+                    <p>
+                        Total Answered :  <strong class="right"><span id="total_a"></span></strong>
+                    </p>
+                    <p>
+                        Total Unanswered :  <strong class="right"><span id="total_u"></span></strong>
+                    </p>
+
+                    <p>
+                        Total Score :  <strong class="right"><span class="scores"></span> <span id="perc"></span></strong>
+                    </p>
+
+                    <p>
+                        Wrong Answer: <strong class="right"><span id="wrong"></span></strong>
+                    </p>
+                    <p>
+                        Remark :  <strong class="right" ><span id="rem"></span></strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <div class="content-block-title">&nbsp;</div>
+                <div class="content-block-inner">
+                    <p>
+                        <a href="quiz.html" class="button button-raised">Restart Quiz</a>
+                    </p>
+                    <p>
+                        <a href="category.html" class="button button-raised">Quiz Category</a>
+                    </p>
+                    <p>
+                        <a href="#" id="logout" class="button button-raised">Logout</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
