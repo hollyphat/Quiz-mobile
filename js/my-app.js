@@ -379,7 +379,7 @@ myApp.onPageInit('passport',function () {
     }
 
     $('#upload-form').JSAjaxFileUploader({
-        uploadUrl: base_url+'upload.php',
+        uploadUrl: base_url+'/upload.php',
         formData:{
             user_id: sessionStorage.getItem("user_id")
         },
