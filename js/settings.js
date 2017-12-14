@@ -10,7 +10,7 @@ var supervisor = "Mr. Ramoni T.A";
 var url;
 
 var env;
-env = "live";
+env = "locals";
 
 var base_url;
 
@@ -18,8 +18,8 @@ if(env == "local"){
     url = "http://freelance.in/quiz_mobile/api.php";
     base_url = "http://freelance.in/quiz_mobile/";
 }else{
-    base_url = "http://app.onlinemedia.com.ng/quiz/";
-    url = 'http://app.onlinemedia.com.ng/quiz/api.php';
+    base_url = "http://fpecomengmquiz.com.ng/";
+    url = 'http://fpecomengmquiz.com.ng/api.php';
 }
 
 $(document).ready(function () {

@@ -25,9 +25,9 @@ function spent_timer(){
 
     if(time_spent == 1799){
         //return false;
-        $("#time_spent_post").val("1800");
+        //$$("#time_spent_post").val("1800");
         myApp.alert("Time up");
-        $$(".test_submit").click();
+        $$(".sub-test").click();
         //clearInterval(counter);
         clearInterval(counter2);
         return false;
