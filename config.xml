@@ -6,7 +6,7 @@
         id        = "ng.com.onlinemedia.quizMobile"
         version   = "1.0.1">
 
-    <name>Quiz Mobile</name>
+    <name>Mobile Quiz</name>
 
     <description>
         Mobile Quiz Application
@@ -63,7 +63,7 @@
     <!--<plugin name="cordova-plugin-camera" spec="^3.0.0"  />-->
     <!--<plugin name="cordova-plugin-file" />-->
     <!--<plugin name="cordova-plugin-file-transfer" />-->
-    <plugin name="cordova-plugin-file-transfer" spec="~1.6.1" />
+    <!--<plugin name="cordova-plugin-file-transfer" spec="~1.6.1" />-->
 
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />    
