@@ -87,3 +87,13 @@ input::-webkit-inner-spin-button {
     font-family: digit;
     font-size: 24px;
 }
+
+.t-time-section{
+
+    text-align: center;
+}
+
+.t-time-section span{
+    font-family: digit;
+    font-size: 24px;
+}
