@@ -67,9 +67,11 @@ myApp.onPageInit('login-screen-embedded', function (page) {
                 }
                 myApp.hidePreloader();
 
-                myApp.addNotification({
-                    message : f.msg
-                });
+                // myApp.addNotification({
+                //     message : f.msg
+                // });
+
+                show_toast(f.msg,"blue");
             },
             error:function(err){
                 console.log(err.responseText);
@@ -109,9 +111,11 @@ myApp.onPageInit('password', function (page) {
                 }
                 myApp.hidePreloader();
 
-                myApp.addNotification({
-                    message : f.msg
-                });
+                // myApp.addNotification({
+                //     message : f.msg
+                // });
+
+                show_toast(f.msg,"blue");
             },
             error:function(err){
                 myApp.hidePreloader();
@@ -201,9 +205,11 @@ myApp.onPageInit('main-page', function (page) {
                 }else {
                     myApp.hidePreloader();
 
-                    myApp.addNotification({
-                        message: f.msg
-                    });
+                    // myApp.addNotification({
+                    //     message: f.msg
+                    // });
+
+                    show_toast(f.msg,"red");
 
 
                 }
@@ -290,17 +296,21 @@ myApp.onPageInit('profile',function (page) {
                     sessionStorage.setItem("gender",gender);
                     update_stat();
                     myApp.hidePreloader();
-                    myApp.addNotification({
-                        message: f.msg
-                    });
+                    // myApp.addNotification({
+                    //     message: f.msg
+                    // });
+
+                    show_toast(f.msg,"green");
                 }else {
                     myApp.hidePreloader();
 
 
 
-                    myApp.addNotification({
-                        message: 'Unable to update profile'
-                    });
+                    // myApp.addNotification({
+                    //     message: 'Unable to update profile'
+                    // });
+
+                    show_toast("Unable to update profile","red");
 
 
                 }
@@ -343,17 +353,21 @@ myApp.onPageInit('profile',function (page) {
                 var ok = f.ok;
                 if(ok == 1){
                     myApp.hidePreloader();
-                    myApp.addNotification({
-                        message: f.msg
-                    });
+                    // myApp.addNotification({
+                    //     message: f.msg
+                    // });
+
+                    show_toast(f.msg,"green");
                     $("#password").val('');
                     $("#confirm_password").val('');
                 }else {
                     myApp.hidePreloader();
 
-                    myApp.addNotification({
-                        message: 'Unable to update password'
-                    });
+                    // myApp.addNotification({
+                    //     message: 'Unable to update password'
+                    // });
+
+                    show_toast("Unable to update password","red");
 
 
                 }
@@ -392,7 +406,8 @@ myApp.onPageInit('passport',function () {
             var img_src = base_url+"/upload/"+f;
             sessionStorage.setItem("passport",f);
             $("#passport").attr("src",img_src);
-            myApp.addNotification("Passport uploaded successfully");
+            //myApp.addNotification("Passport uploaded successfully");
+            show_toast("Passport added successfully","green");
         }
     });
 
@@ -769,11 +784,11 @@ myApp.onPageInit('quiz_page',function () {
             $$("#the_user_id").val(sessionStorage.getItem("user_id"));
             $$("#the_cat_id").val(sessionStorage.getItem("quiz_id"));
             //console.log(f);
-            $.getScript('js/timer.js', function()
+            $.getScript('js/timer-2.js', function()
             {
                 //myApp.alert("finally here");
                 //console.log(time_rem);
-                $$(".time-section").removeClass('hide');
+                $$(".t-time-section").removeClass('hide');
             });
             $$(".submit-btn").removeClass('hide');
             myApp.hideIndicator();

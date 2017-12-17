@@ -52,3 +52,13 @@ function remark(score) {
         return "Poor";
     }
 }
+
+
+function show_toast(msg,color) {
+    iziToast.show({
+        message: msg,
+        color: color,
+        timeout: 7000
+    });
+}
+
