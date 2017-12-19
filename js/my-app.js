@@ -723,7 +723,7 @@ myApp.onPageInit('quiz_page',function () {
         });
     });
     // jQuery
-    $$("#quiz_name").html(sessionStorage.getItem("quiz_name"));
+    $$("#quiz_name_2").html(sessionStorage.getItem("quiz_name"));
 
     //load the quiz
 
@@ -834,8 +834,8 @@ myApp.onPageInit('quiz_page',function () {
                 'crossDomain': true,
                 success: function (f) {
                     console.log(f);
-                    $$(".time-section").addClass('hide');
-                    $$(".quiz-page").addClass('hide');
+                    $$(".t_time-section").addClass('hide');
+                    $$(".t_quiz-page").addClass('hide');
                     var scores = f.correct;
                     var total_q = f.total_q;
                     var answered = f.answered;
@@ -844,14 +844,14 @@ myApp.onPageInit('quiz_page',function () {
                     scores = parseInt(scores);
                     var rem = remark(scores);
 
-                    $("#wrong").html(wrong);
-                    $("#total_q").html(total_q);
-                    $("#total_a").html(answered);
-                    $("#total_u").html(not_answered);
-                    $(".scores").html(scores);
-                    $("#perc").html("("+f.perc+" %)");
-                    $("#rem").html(rem);
-                    $$(".result-form").removeClass('hide');
+                    $("#t_wrong").html(wrong);
+                    $("#t_total_q").html(total_q);
+                    $("#t_total_a").html(answered);
+                    $("#t_total_u").html(not_answered);
+                    $(".t_scores").html(scores);
+                    $("#t_perc").html("("+f.perc+" %)");
+                    $("#t_rem").html(rem);
+                    $$(".t_result-form").removeClass('hide');
                     myApp.hidePreloader();
                 },
                 error: function (e) {
