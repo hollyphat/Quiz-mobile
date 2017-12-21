@@ -437,6 +437,7 @@ myApp.onPageInit('category',function () {
     }
 
     $(".pre-load").addClass(class_c);
+    $$(".the-list").html('');
 
     $$.ajax({
         url: url,
@@ -580,6 +581,7 @@ myApp.onPageInit('quiz',function () {
            'q_cat': sessionStorage.getItem("quiz_id")
        },
         success:function (f) {
+            console.log(f);
            var the_questions = f.question;
            var total_q = the_questions.length;
             var total_q_s = total_q - 1;
@@ -628,6 +630,7 @@ myApp.onPageInit('quiz',function () {
            $$("#the_user_id").val(sessionStorage.getItem("user_id"));
             $$("#the_cat_id").val(sessionStorage.getItem("quiz_id"));
             //console.log(f);
+            time_rem = f.timer;
             $.getScript('js/timer.js', function()
             {
                 //myApp.alert("finally here");
@@ -667,43 +670,49 @@ myApp.onPageInit('quiz',function () {
     });
 
     $$("body").on('submit','#quiz-form',function (e) {
-        myApp.confirm('Are you sure you want to submit?', function () {
-            var datas = $("#quiz-form").serialize();
+        if(time_rem > 0){
+            myApp.confirm('Are you sure you want to submit?', function () {
+                /*var datas = $("#quiz-form").serialize();
 
-            myApp.showPreloader("Submitting your result!!!");
-            $$.ajax({
-               'url': url+'?'+datas,
-               'type': 'GET',
-                'dataType': 'json',
-               'crossDomain': true,
-                success: function (f) {
-                    console.log(f);
-                    $$(".time-section").addClass('hide');
-                    $$(".quiz-page").addClass('hide');
-                    var scores = f.correct;
-                    var total_q = f.total_q;
-                    var answered = f.answered;
-                    var not_answered = f.not_answered;
-                    var wrong = f.wrong;
-                    scores = parseInt(scores);
-                    var rem = remark(scores);
+                myApp.showPreloader("Submitting your result!!!");
+                $$.ajax({
+                   'url': url+'?'+datas,
+                   'type': 'GET',
+                    'dataType': 'json',
+                   'crossDomain': true,
+                    success: function (f) {
+                        console.log(f);
+                        $$(".time-section").addClass('hide');
+                        $$(".quiz-page").addClass('hide');
+                        var scores = f.correct;
+                        var total_q = f.total_q;
+                        var answered = f.answered;
+                        var not_answered = f.not_answered;
+                        var wrong = f.wrong;
+                        scores = parseInt(scores);
+                        var rem = remark(scores);
 
-                    $("#wrong").html(wrong);
-                    $("#total_q").html(total_q);
-                    $("#total_a").html(answered);
-                    $("#total_u").html(not_answered);
-                    $(".scores").html(scores);
-                    $("#perc").html("("+f.perc+" %)");
-                    $("#rem").html(rem);
-                    $$(".result-form").removeClass('hide');
-                    myApp.hidePreloader();
-                },
-                error: function (e) {
-                   myApp.alert("Network error, please submit again!");
-                    console.log(e);
-                }
+                        $("#wrong").html(wrong);
+                        $("#total_q").html(total_q);
+                        $("#total_a").html(answered);
+                        $("#total_u").html(not_answered);
+                        $(".scores").html(scores);
+                        $("#perc").html("("+f.perc+" %)");
+                        $("#rem").html(rem);
+                        $$(".result-form").removeClass('hide');
+                        myApp.hidePreloader();
+                    },
+                    error: function (e) {
+                       myApp.alert("Network error, please submit again!");
+                        console.log(e);
+                    }
+                });*/
+
+                submission();
             });
-        });
+        }else{
+            submission();
+        }
 
         e.preventDefault();
     });
@@ -783,6 +792,7 @@ myApp.onPageInit('quiz_page',function () {
 
             $$("#the_user_id").val(sessionStorage.getItem("user_id"));
             $$("#the_cat_id").val(sessionStorage.getItem("quiz_id"));
+             time_rem_2 = f.timer;
             //console.log(f);
             $.getScript('js/timer-2.js', function()
             {
@@ -790,7 +800,7 @@ myApp.onPageInit('quiz_page',function () {
                 //console.log(time_rem);
                 $$(".t-time-section").removeClass('hide');
             });
-            $$(".submit-btn").removeClass('hide');
+            $$(".submit-btn-2").removeClass('hide');
             myApp.hideIndicator();
         },
         error: function (e) {
@@ -823,8 +833,59 @@ myApp.onPageInit('quiz_page',function () {
     });
 
     $$("body").on('submit','#quiz-form-2',function (e) {
-        myApp.confirm('Are you sure you want to submit?', function () {
-            var datas = $("#quiz-form-2").serialize();
+        if(time_rem_2 > 0){   
+            myApp.confirm('Are you sure you want to submit?', function () {
+                submission_2();
+            });
+        }else{
+            submission_2();
+        }
+
+        e.preventDefault();
+    });
+});
+
+
+function submission(){
+     var datas = $("#quiz-form").serialize();
+
+                myApp.showPreloader("Submitting your result!!!");
+                $$.ajax({
+                   'url': url+'?'+datas,
+                   'type': 'GET',
+                    'dataType': 'json',
+                   'crossDomain': true,
+                    success: function (f) {
+                        console.log(f);
+                        $$(".time-section").addClass('hide');
+                        $$(".quiz-page").addClass('hide');
+                        var scores = f.correct;
+                        var total_q = f.total_q;
+                        var answered = f.answered;
+                        var not_answered = f.not_answered;
+                        var wrong = f.wrong;
+                        scores = parseInt(scores);
+                        var rem = remark(scores);
+
+                        $("#wrong").html(wrong);
+                        $("#total_q").html(total_q);
+                        $("#total_a").html(answered);
+                        $("#total_u").html(not_answered);
+                        $(".scores").html(scores);
+                        $("#perc").html("("+f.perc+" %)");
+                        $("#rem").html(rem);
+                        $$(".result-form").removeClass('hide');
+                        myApp.hidePreloader();
+                    },
+                    error: function (e) {
+                       myApp.alert("Network error, please submit again!");
+                        console.log(e);
+                    }
+                });
+}
+
+function submission_2(){
+    var datas = $("#quiz-form-2").serialize();
 
             myApp.showPreloader("Submitting your result!!!");
             $$.ajax({
@@ -834,7 +895,7 @@ myApp.onPageInit('quiz_page',function () {
                 'crossDomain': true,
                 success: function (f) {
                     console.log(f);
-                    $$(".t_time-section").addClass('hide');
+                    $$(".t-time-section").addClass('hide');
                     $$(".t_quiz-page").addClass('hide');
                     var scores = f.correct;
                     var total_q = f.total_q;
@@ -859,12 +920,7 @@ myApp.onPageInit('quiz_page',function () {
                     console.log(e);
                 }
             });
-        });
-
-        e.preventDefault();
-    });
-});
-
+}
 
 function update_stat(){
     //myApp.alert("I work");

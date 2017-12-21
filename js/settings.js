@@ -10,9 +10,11 @@ var supervisor = "Mr. Ramoni T.A";
 var url;
 
 var env;
-env = "locals";
+env = "online";
 
 var base_url;
+var time_rem;
+var time_rem_2;
 
 if(env == "local"){
     url = "http://freelance.in/quiz_mobile/api.php";

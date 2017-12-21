@@ -5,7 +5,10 @@
 
 var time_spent = 0; //initialize time spent to be zero
 
-var time_rem = 1800; //initialize time remaining to be 7200 , 2 hours(2*60*60)
+//var time_rem = 1800; //initialize time remaining to be 7200 , 2 hours(2*60*60)
+
+sent_time = time_rem - 1;
+
 /*
 var spent_hour = $$("#time_spent_hour") //get the time spent hour span
 var spent_minutes = $$("#time_spent_minute"); //get the time spent minute span
@@ -23,7 +26,7 @@ var counter2 = setInterval(rem_timer, 1000); //run the remaining function
 
 function spent_timer(){
 
-    if(time_spent == 1799){
+    if(time_spent == sent_time){
         //return false;
         //$$("#time_spent_post").val("1800");
         myApp.alert("Time up");
@@ -53,6 +56,9 @@ function spent_timer(){
 function rem_timer(){
 
     if(time_rem == 0){
+        //myApp.alert("Time up");
+        $$(".sub-test").click();
+        clearInterval(counter2);
         return false;
     }
 
