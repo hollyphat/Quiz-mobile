@@ -3,14 +3,14 @@
 var app_name = "Mobile Quiz";
 var developer_url = "https://onlinemedia.com.ng";
 var developer_email = "admin@onlinemedia.com.ng";
-var supervisor = "Mr. Ramoni T.A";
+var supervisor = "Mr. Amusan D.G";
 
 
 //var url = 'http://app.onlinemedia.com.ng/quiz/api.php';
 var url;
 
 var env;
-env = "online";
+env = "loca";
 
 var base_url;
 var time_rem;
@@ -21,7 +21,7 @@ if(env == "local"){
     base_url = "http://freelance.in/quiz_mobile/";
 }else{
     base_url = "http://fpecomengmquiz.com.ng/";
-    url = 'http://fpecomengmquiz.com.ng/api.php';
+    url = 'http://fpecomengmquiz.com.ng/l_api.php';
 }
 
 $(document).ready(function () {
