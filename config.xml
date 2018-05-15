@@ -6,10 +6,10 @@
         id        = "ng.com.onlinemedia.lautechquizMobile"
         version   = "1.0.1">
 
-    <name>Mobile Quiz</name>
+    <name>Lautech Mobile Quiz</name>
 
     <description>
-        Mobile Quiz Application
+        Lautech Mobile Quiz Application - Supervised by Mr. Amusan D.G
     </description>
 
     <author href="http://onlinemedia.com.ng" email="admin@onlinemedia.com.ng">
