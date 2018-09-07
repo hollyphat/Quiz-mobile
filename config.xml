@@ -3,13 +3,13 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "ng.com.onlinemedia.quizMobile"
+        id        = "ng.com.onlinemedia.fpequiz"
         version   = "1.0.1">
 
-    <name>Mobile Quiz</name>
+    <name>Fpe Mobile Quiz</name>
 
     <description>
-        Mobile Quiz Application
+        FPE Mobile Quiz Application - Supervised by Mrs. Fabiyi A.A
     </description>
 
     <author href="http://onlinemedia.com.ng" email="admin@onlinemedia.com.ng">
@@ -36,7 +36,7 @@
 
 
     <!-- Define app icon and splashscreen for each platform. -->
-    <icon src="icon.jpg" />
+    <icon src="img/fpe.png" />
     
     
     
